@@ -1,8 +1,13 @@
 <html>
-    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
-        <meta charset="UTF-8" />
-        <link rel="stylesheet" href="index.css">
-        <title>Personal Dashboard</title>
+    <head>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+      <meta charset="UTF-8" />
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@100;200;300;400&display=swap" rel="stylesheet">
+      <link rel="icon" type="image/png" href="./public/icon.png" />
+      <link rel="stylesheet" href="index.css">
+      <title>Personal Dashboard</title>
     </head>
     <body>
       <main id="main--div">
@@ -18,10 +23,21 @@
               <p id="crypto--low"></p>
             </section>
           </section>
-          <div id="weather--div">Weather</div>
+          <div id="weather--div">Weather
+          </div>
         </div>
-        <h1 id="clock"></h1>
-        <p id="author"></p>
+        <span id="time">
+          <h1 id="clock"></h1>
+          <h2 id="date"></h2>
+        </span>
+        <section id="quote--div">
+          <p id="quote"></p>
+          <p id="quote--error"></p>
+        </section>
+        <span id="img-info">
+          <p id="location"></p>
+          <p id="author"></p>
+        </span>
       </main>
         <script src="index.js"></script>
     </body>

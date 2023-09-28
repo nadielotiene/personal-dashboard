@@ -3,7 +3,12 @@ fetch ("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&qu
   .then(data => {
     document.body.style.backgroundImage = `url(${data.urls.full})`
     document.getElementById("author").textContent = `Photo by: ${data.user.name}`
+    document.getElementById("location").textContent = `Location: ${data.location.name}`
+    if (data.location.name === null) {
+      return document.getElementById("location").textContent = ""
+    }
     // console.log(data.urls.full)
+    console.log(data)
     // throw Error("I'm an error!")
   })
   .catch(err => {
@@ -40,10 +45,18 @@ fetch ("https://api.coingecko.com/api/v3/coins/dogecoin")
     document.getElementById("crypto--name").textContent = "Not available at the moment"
   })
 
+
 function updateClock() {
   const date = new Date();
-  const currentTime = date.toLocaleTimeString("en-us", {timeStyle: "medium"});
-  document.getElementById("clock").textContent = `${currentTime}`
+
+  const currentTime = date.toLocaleTimeString([], { timeStyle:"short" });
+  const noMeridiemTime = currentTime.replace("AM", "").replace("PM", "")
+
+  const options = { weekday: "short", month: "short", day: "numeric" };
+  const currentDate = date.toLocaleDateString("en-US", options);
+
+  document.getElementById("clock").textContent = `${noMeridiemTime}`
+  document.getElementById("date").textContent = `${currentDate}`
 }
 setInterval(updateClock, 1000)
 
@@ -70,3 +83,23 @@ navigator.geolocation.getCurrentPosition(position => {
     .catch(err => console.error(err))
 })
 
+fetch("https://zenquotes.io/api/random")
+  .then(res => {
+    if (!res.ok) {
+      throw Error("Something went wrong")
+    }
+    console.log(res.status)
+    console.log(res.ok)
+    return res.json()
+  })
+  .then(data => {
+    document.getElementById("quote").innerHTML = `
+      <p>"${data[0].q}"</p>
+      <small>-${data[0].a}</small>
+    `
+    console.log(data)
+  })
+  .catch(err => {
+    console.error(err)
+    document.getElementById("quote--error").textContent = "No quotes available at the moment"
+  })
